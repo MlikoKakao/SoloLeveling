@@ -18,34 +18,60 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		Map<String,Integer> stats = loadStats();
 		
-		boolean pointsAdded = false;
-		System.out.println("What stat do you want to increase?");
+		
+
 		System.out.println("HP, MP, STR, VIT, AGL, INTEL, SNS");
 		
-		
+		for(int i=0;i<5;i++) 
+		{ 
+		boolean pointsAdded = false;
 		 while (!pointsAdded) {
+			 System.out.print("Which stat would you like to increase? You have " + (5-i)+" points remaining: ");
 			    String input = scanner.next().toLowerCase().trim();
 		     
 			    if (input.equals("reset")) {
 	                resetStats(stats); 
 	                saveStats(stats); 
-	                pointsAdded = true; 
+	                pointsAdded = true;
+	                i = 5;
 	            } else if (stats.containsKey(input.toLowerCase())) {
 	                stats.put(input.toLowerCase(), stats.get(input.toLowerCase()) + 1); 
 	                System.out.println("You increased your " + input.toUpperCase() + " by 1!");
 	                pointsAdded = true;
-	            } else {
+	            } 
+		 else {
 	                System.out.println("Invalid stat. Try again.");
 	            }
 	        }  
 		
 		saveStats(stats);
-		scanner.close();
-		System.out.println(stats);
 		
-	
+		System.out.println("Final stats: ");
+		List<String> customOrder = List.of("hp", "mp", "str", "vit", "agl", "intel", "sns");
+
+		
+		for (String stat : customOrder) {
+			String fullName = getFullStatName(stat);
+			System.out.print(fullName +": " + stats.get(stat)+" \n");
+		}
+		}
+		scanner.close();
 		
 	}
+	
+	public static String getFullStatName(String shortName) {
+		switch(shortName) {
+		case "hp": return "HP";
+        case "mp": return "MP";
+        case "str": return "Strength";
+        case "vit": return "Vitality";
+        case "agl": return "Agility";
+        case "intel": return "Intelligence";
+        case "sns": return "Sense";
+        default: return shortName.toUpperCase();
+		}
+	}
+	
 	public static Map<String, Integer> loadStats() {
 		
 		Map<String, Integer> stats = new HashMap<>();
