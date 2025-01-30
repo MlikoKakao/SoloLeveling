@@ -32,7 +32,7 @@ public class Main {
 	                pointsAdded = true; 
 	            } else if (stats.containsKey(input.toLowerCase())) {
 	                stats.put(input.toLowerCase(), stats.get(input.toLowerCase()) + 1); 
-	                System.out.println("You increased your " + input.toUpperCase() + "by 1!");
+	                System.out.println("You increased your " + input.toUpperCase() + " by 1!");
 	                pointsAdded = true;
 	            } else {
 	                System.out.println("Invalid stat. Try again.");
