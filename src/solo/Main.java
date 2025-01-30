@@ -46,7 +46,7 @@ public class Main {
 		
 		saveStats(stats);
 		
-		System.out.println("Final stats: ");
+		System.out.println("Updated stats: ");
 		List<String> customOrder = List.of("hp", "mp", "str", "vit", "agl", "intel", "sns");
 
 		
